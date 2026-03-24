@@ -4,7 +4,8 @@ export type ExerciseType =
   | 'fill-the-blank'
   | 'match-pairs'
   | 'order-steps'
-  | 'prompt-builder';
+  | 'prompt-builder'
+  | 'prompt-audit';
 
 export type ExerciseMode = 'inline' | 'quiz';
 export type ExerciseStatus = 'idle' | 'correct' | 'incorrect' | 'partial';
@@ -36,6 +37,14 @@ export interface PromptBlock {
   id: string;
   label: string;
   slot: PromptSlot;
+}
+
+export type PromptAuditDecision = 'present' | 'missing';
+
+export interface PromptAuditCheck {
+  id: string;
+  label: string;
+  expected: PromptAuditDecision;
 }
 
 interface BaseExerciseDefinition {
@@ -85,13 +94,20 @@ export interface PromptBuilderExerciseDefinition extends BaseExerciseDefinition 
   expectedBySlot: Record<PromptSlot, string>;
 }
 
+export interface PromptAuditExerciseDefinition extends BaseExerciseDefinition {
+  type: 'prompt-audit';
+  promptText: string;
+  checks: PromptAuditCheck[];
+}
+
 export type ExerciseDefinition =
   | MultipleChoiceExerciseDefinition
   | TrueFalseExerciseDefinition
   | FillTheBlankExerciseDefinition
   | MatchPairsExerciseDefinition
   | OrderStepsExerciseDefinition
-  | PromptBuilderExerciseDefinition;
+  | PromptBuilderExerciseDefinition
+  | PromptAuditExerciseDefinition;
 
 export interface ExerciseResult {
   id: string;

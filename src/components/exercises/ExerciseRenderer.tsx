@@ -3,6 +3,7 @@ import { FillTheBlankExercise } from './FillTheBlankExercise';
 import { MatchPairsExercise } from './MatchPairsExercise';
 import { MultipleChoiceExercise } from './MultipleChoiceExercise';
 import { OrderStepsExercise } from './OrderStepsExercise';
+import { PromptAuditExercise } from './PromptAuditExercise';
 import { PromptBuilderExercise } from './PromptBuilderExercise';
 import { TrueFalseExercise } from './TrueFalseExercise';
 
@@ -30,6 +31,8 @@ export function ExerciseRenderer({
       return <OrderStepsExercise exercise={exercise} index={index} mode={mode} />;
     case 'prompt-builder':
       return <PromptBuilderExercise exercise={exercise} index={index} mode={mode} />;
+    case 'prompt-audit':
+      return <PromptAuditExercise exercise={exercise} index={index} mode={mode} />;
     default:
       return null;
   }

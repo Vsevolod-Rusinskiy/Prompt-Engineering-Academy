@@ -5,6 +5,8 @@ import {
   type MatchPairsExerciseDefinition,
   type MultipleChoiceExerciseDefinition,
   type OrderStepsExerciseDefinition,
+  type PromptAuditDecision,
+  type PromptAuditExerciseDefinition,
   type PromptBuilderExerciseDefinition,
   type PromptSlot,
   type QuizSummary,
@@ -150,6 +152,17 @@ export function evaluatePromptBuilder(
   }, 0);
 
   return buildResult(definition, correctCount / slots.length);
+}
+
+export function evaluatePromptAudit(
+  definition: PromptAuditExerciseDefinition,
+  answer: Record<string, PromptAuditDecision>,
+) {
+  const correctCount = definition.checks.reduce((total, check) => {
+    return total + Number(answer[check.id] === check.expected);
+  }, 0);
+
+  return buildResult(definition, correctCount / definition.checks.length);
 }
 
 export function buildQuizSummary(

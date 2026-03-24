@@ -55,3 +55,19 @@ test('PromptBuilder собирается и проходит проверку', 
     'Верно',
   );
 });
+
+test('PromptAudit проходит проверку как новый кастомный компонент', async ({ page }) => {
+  await page.goto('/articles/prompt-structure');
+
+  const card = page.getByTestId('exercise-card-article-structure-audit');
+
+  await card.getByTestId('audit-present-article-structure-audit-audit-topic').click();
+  await card.getByTestId('audit-missing-article-structure-audit-audit-role').click();
+  await card.getByTestId('audit-missing-article-structure-audit-audit-context').click();
+  await card.getByTestId('audit-missing-article-structure-audit-audit-format').click();
+  await card.getByTestId('exercise-check-article-structure-audit').click();
+
+  await expect(card.getByTestId('exercise-state-article-structure-audit')).toHaveText(
+    'Верно',
+  );
+});

@@ -12,6 +12,7 @@ const typeLabels: Record<ExerciseDefinition['type'], string> = {
   'match-pairs': 'MatchPairs',
   'order-steps': 'OrderSteps',
   'prompt-builder': 'PromptBuilder',
+  'prompt-audit': 'PromptAudit',
 };
 
 const statusLabels = {

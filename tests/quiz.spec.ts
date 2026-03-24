@@ -32,7 +32,7 @@ test('финальный тест содержит 10 вопросов и шес
     'MatchPairs',
     'OrderSteps',
     'PromptBuilder',
-    'FillTheBlank',
+    'PromptAudit',
     'TrueFalse',
     'MatchPairs',
   ]);

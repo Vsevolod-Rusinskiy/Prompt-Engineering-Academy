@@ -149,16 +149,39 @@ export const quizExercises: ExerciseDefinition[] = [
     },
   },
   {
-    id: 'quiz-fill-blank-2',
-    type: 'fill-the-blank',
+    id: 'quiz-audit-1',
+    type: 'prompt-audit',
     title: 'Вопрос 8',
-    prompt: 'Заполни пропуск.',
-    sentence: 'Максимальный объём текста, который модель удерживает за раз, называют окном ____.',
-    placeholder: 'Введите слово',
-    acceptedAnswers: ['контекста', 'context'],
+    prompt: 'Проведи аудит короткого промпта и отметь, что в нём есть, а чего не хватает.',
+    promptText: 'Напиши про токены. Без воды.',
+    checks: [
+      {
+        id: 'quiz-audit-topic',
+        label: 'Тема запроса обозначена',
+        expected: 'present',
+      },
+      {
+        id: 'quiz-audit-role',
+        label: 'Есть роль модели',
+        expected: 'missing',
+      },
+      {
+        id: 'quiz-audit-context',
+        label: 'Есть контекст или целевая аудитория',
+        expected: 'missing',
+      },
+      {
+        id: 'quiz-audit-format',
+        label: 'Есть формат ответа',
+        expected: 'missing',
+      },
+    ],
     feedback: {
-      correct: 'Верно. Речь об окне контекста.',
-      incorrect: 'Здесь нужен ответ “контекста”.',
+      correct: 'Верно. В запросе обозначена тема, но остальной управляющей структуры не хватает.',
+      partial:
+        'Часть аудита собрана верно, но проверь, где действительно есть информация, а где модель будет додумывать.',
+      incorrect:
+        'Этот промпт слишком короткий: тема есть, но роли, контекста и формата нет.',
     },
   },
   {

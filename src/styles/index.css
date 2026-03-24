@@ -356,6 +356,7 @@ h3 {
 .pair-grid,
 .step-list,
 .builder,
+.audit,
 .builder__slots,
 .builder__blocks {
   display: grid;
@@ -508,6 +509,59 @@ h3 {
   font-size: 0.78rem;
   color: var(--accent-dark);
   font-weight: 700;
+}
+
+.audit {
+  gap: 18px;
+}
+
+.audit__prompt {
+  padding: 16px 18px;
+  border-radius: 22px;
+  background: rgba(16, 33, 38, 0.05);
+  border: 1px solid rgba(16, 33, 38, 0.08);
+}
+
+.audit__label {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: var(--accent-dark);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+}
+
+.audit__prompt blockquote {
+  margin: 0;
+  font-size: 1.02rem;
+  color: #102126;
+}
+
+.audit__grid {
+  display: grid;
+  gap: 12px;
+}
+
+.audit-row {
+  display: grid;
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(16, 33, 38, 0.08);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.audit-row p {
+  margin: 0;
+  color: #102126;
+  font-weight: 700;
+}
+
+.audit-row__actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .exercise-card__footer {
