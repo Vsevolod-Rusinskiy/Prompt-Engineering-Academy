@@ -5,11 +5,11 @@ test('главная страница показывает статьи и вх�
 
   await expect(
     page.getByRole('heading', {
-      name: /учиться писать промпты через практику/i,
+      name: /учиться через активное прохождение/i,
     }),
   ).toBeVisible();
   await expect(page.getByRole('link', { name: 'Итоговый тест', exact: true })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Открыть итоговый тест' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Запустить Journey' })).toBeVisible();
   await expect(page.getByRole('link', { name: 'Читать статью' })).toHaveCount(3);
 });
 
