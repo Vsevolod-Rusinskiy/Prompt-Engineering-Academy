@@ -42,7 +42,8 @@ a {
 
 button,
 input,
-select {
+select,
+textarea {
   font: inherit;
 }
 
@@ -246,9 +247,70 @@ h3 {
 
 .article-catalog,
 .article-content,
-.quiz-list {
+.quiz-list,
+.journey-page,
+.journey-main,
+.journey-sidebar,
+.journey-form,
+.journey-form__group {
   display: grid;
   gap: 18px;
+}
+
+.journey-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+}
+
+.journey-form__split {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.journey-form__split label,
+.journey-form__group label {
+  display: grid;
+  gap: 8px;
+}
+
+.journey-form__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.journey-textarea {
+  min-height: 180px;
+  resize: vertical;
+}
+
+.journey-textarea--short {
+  min-height: 120px;
+}
+
+.journey-feedback-list,
+.journey-achievements {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.journey-artifact {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  margin: 0;
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(16, 33, 38, 0.05);
+  border: 1px solid rgba(16, 33, 38, 0.08);
+  color: #102126;
+}
+
+.journey-warning,
+.journey-error {
+  color: var(--danger);
+  margin: 0;
 }
 
 .article-cards {
@@ -639,7 +701,9 @@ h3 {
   .hero,
   .article-hero,
   .quiz-page__intro,
-  .builder {
+  .builder,
+  .journey-grid,
+  .journey-form__split {
     grid-template-columns: 1fr;
   }
 

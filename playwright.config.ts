@@ -16,10 +16,19 @@ export default defineConfig({
     channel: 'chrome',
     ...devices['Desktop Chrome'],
   },
-  webServer: {
-    command: 'npm run dev -- --host 127.0.0.1 --port 4173',
-    url: 'http://127.0.0.1:4173',
-    reuseExistingServer: true,
-    timeout: 30_000,
-  },
+  webServer: [
+    {
+      command: 'PORT=8797 npm run server:start',
+      url: 'http://127.0.0.1:8797/api/health',
+      reuseExistingServer: true,
+      timeout: 30_000,
+    },
+    {
+      command:
+        'API_TARGET=http://127.0.0.1:8797 npm run dev -- --host 127.0.0.1 --port 4173',
+      url: 'http://127.0.0.1:4173',
+      reuseExistingServer: true,
+      timeout: 30_000,
+    },
+  ],
 });

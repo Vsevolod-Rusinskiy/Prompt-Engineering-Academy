@@ -7,18 +7,18 @@ export function HomePage() {
       <section className="hero">
         <div>
           <p className="eyebrow">Образовательный портал</p>
-          <h1>Учиться писать промпты через практику, а не через список шаблонов.</h1>
+          <h1>Учиться через активное прохождение, а не через пассивное чтение.</h1>
           <p className="hero__lead">
             Prompt Engineering Academy соединяет короткие объяснения с упражнениями
-            прямо внутри текста. Прочитал абзац, сразу проверил понимание, дошёл до
-            теста и увидел слабые места.
+            прямо внутри текста. Теперь рядом есть и минимальный режим `Knowledge Journey`:
+            вводишь тему или текст, проходишь чекпоинты под таймером и получаешь итоговую сводку.
           </p>
           <div className="hero__actions">
-            <Link className="button button--primary" to="/articles/llm-and-tokens">
-              Начать с первой статьи
+            <Link className="button button--primary" to="/journey">
+              Запустить Journey
             </Link>
-            <Link className="button button--ghost" to="/quiz">
-              Открыть итоговый тест
+            <Link className="button button--ghost" to="/articles/llm-and-tokens">
+              Открыть статьи
             </Link>
           </div>
         </div>
@@ -26,7 +26,8 @@ export function HomePage() {
           <p>Что внутри</p>
           <ul>
             <li>3 статьи на русском языке с inline-проверками</li>
-            <li>6 типов упражнений, включая кастомный PromptBuilder</li>
+            <li>Knowledge Journey: setup - run - report</li>
+            <li>Таймер на чекпоинт, XP, streak и achievements</li>
             <li>Итоговый тест на 10 вопросов с прогрессом и рекомендациями</li>
           </ul>
         </div>
