@@ -9,5 +9,5 @@
     "noEmit": true,
     "types": ["node"]
   },
-  "include": ["vite.config.ts", "server/**/*.ts", "src/lib/**/*.ts"]
+  "include": ["vite.config.ts", "server/**/*.ts", "src/lib/**/*.ts", "src/content/**/*.ts"]
 }

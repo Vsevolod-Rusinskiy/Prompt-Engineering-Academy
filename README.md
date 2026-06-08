@@ -9,6 +9,21 @@ Backend умеет работать в двух режимах:
 
 В проекте сохранён и старый контент из Модуля 1: статьи с упражнениями и итоговый тест. Новый основной сценарий лежит в разделе `/journey`.
 
+## AI Extension with Local RAG
+
+Проект расширен минимальным локальным RAG-слоем на базе Ollama:
+
+- `nomic-embed-text-v2-moe:latest` используется для embeddings;
+- `qwen3.5:4b` используется для локальной генерации ответов;
+- статьи превращаются в chunks и индексируются в локальный JSON-индекс;
+- semantic search ищет релевантные chunks по cosine similarity;
+- grounded answers возвращаются вместе с источниками;
+- персональный контекст хранится в `localStorage` под ключом `prompt-engineering-user-context`;
+- AI-действия:
+  - `Спроси платформу` на `/ask`;
+  - `Объяснить проще` в текстовых секциях статей;
+  - `Что изучить дальше?` после quiz или Journey report.
+
 ## Почему этот стек
 
 - `React` даёт быстрый интерфейс для пошагового прохождения чекпоинтов.
@@ -61,6 +76,12 @@ Backend умеет работать в двух режимах:
   - `server/lib/schemas.ts` — валидация payload'ов.
 - Старый модуль 1 остаётся как отдельный слой контента и упражнений.
 
+### Architecture
+
+```text
+articles → chunks → embeddings → JSON index → semantic search → qwen3.5:4b → answer + sources
+```
+
 ## Локальный запуск
 
 1. Установить зависимости:
@@ -73,6 +94,19 @@ npm install
 
 ```bash
 cp .env.example .env
+```
+
+Для локального RAG должен быть запущен Ollama, а модели должны быть установлены:
+
+```bash
+ollama pull nomic-embed-text-v2-moe
+ollama pull qwen3.5:4b
+```
+
+Собрать локальный JSON-индекс:
+
+```bash
+npm run rag:index
 ```
 
 3. При желании включить реальный AI-режим:
@@ -100,6 +134,23 @@ npm run dev
 - `http://127.0.0.1:4173/` — главная
 - `http://127.0.0.1:4173/quiz` — старый итоговый тест
 
+### Local setup
+
+```bash
+npm install
+cp .env.example .env
+npm run rag:index
+npm run server:start
+npm run dev
+```
+
+### How to try
+
+- Открыть `/ask` и задать вопрос платформе.
+- В статье нажать `Объяснить проще`.
+- После quiz или Journey report нажать `Что изучить дальше?`.
+- Проверить персональный контекст в `localStorage` по ключу `prompt-engineering-user-context`.
+
 ## Как проверить проект
 
 1. Открыть `/journey`.
@@ -120,6 +171,17 @@ npm run dev
 
 ```bash
 npm run test
+npm run build
+```
+
+### Tests
+
+```bash
+npm run rag:chunks:test
+npm run rag:index
+npm run rag:search:test
+npm run rag:ask:test
+npm run ollama:embed:test
 npm run build
 ```
 

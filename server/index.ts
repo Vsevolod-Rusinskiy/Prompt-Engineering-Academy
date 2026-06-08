@@ -7,6 +7,11 @@ import { getOpenAIModel, isOpenAIConfigured } from './lib/openai';
 import buildReportRoute from './routes/build-report';
 import evaluateAttemptRoute from './routes/evaluate-attempt';
 import generateJourneyRoute from './routes/generate-journey';
+import ollamaHealthRoute from './routes/ollama-health';
+import ragAskRoute from './routes/rag-ask';
+import ragExplainRoute from './routes/rag-explain';
+import ragRecommendRoute from './routes/rag-recommend';
+import ragSearchRoute from './routes/rag-search';
 
 const app = new Hono();
 const port = Number(process.env.PORT ?? 8787);
@@ -29,6 +34,11 @@ app.get('/api/health', (c) => {
 app.route('/api/journey/generate', generateJourneyRoute);
 app.route('/api/attempt/evaluate', evaluateAttemptRoute);
 app.route('/api/report/build', buildReportRoute);
+app.route('/api/ollama/health', ollamaHealthRoute);
+app.route('/api/rag/search', ragSearchRoute);
+app.route('/api/rag/ask', ragAskRoute);
+app.route('/api/rag/explain', ragExplainRoute);
+app.route('/api/rag/recommend', ragRecommendRoute);
 
 serve(
   {

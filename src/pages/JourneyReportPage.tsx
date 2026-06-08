@@ -1,14 +1,41 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { NextStudyRecommendation } from '../components/personalization/NextStudyRecommendation';
 import {
   clearJourneySession,
   getJourneyStats,
   readJourneySession,
 } from '../lib/journey-session';
+import { recordJourneyReport } from '../lib/user-context';
 
 export function JourneyReportPage() {
   const navigate = useNavigate();
   const [session, setSession] = useState(() => readJourneySession());
+  const reportStorageKey = useMemo(() => {
+    if (!session?.report) {
+      return null;
+    }
+
+    return `journey-report-recorded:${session.journey.id}:${session.report.totalScore}:${session.report.percent}`;
+  }, [session]);
+
+  useEffect(() => {
+    if (!session?.report || !reportStorageKey) {
+      return;
+    }
+
+    if (window.sessionStorage.getItem(reportStorageKey)) {
+      return;
+    }
+
+    recordJourneyReport({
+      completedAt: new Date().toISOString(),
+      score: session.report.totalScore,
+      masteredConcepts: session.report.masteredConcepts,
+      weakConcepts: session.report.weakConcepts,
+    });
+    window.sessionStorage.setItem(reportStorageKey, 'true');
+  }, [reportStorageKey, session]);
 
   if (!session?.report) {
     return (
@@ -101,6 +128,8 @@ export function JourneyReportPage() {
               <h2>Итоговый документ</h2>
               <pre className="journey-artifact">{session.report.artifactMarkdown}</pre>
             </article>
+
+            <NextStudyRecommendation />
           </section>
         </div>
 

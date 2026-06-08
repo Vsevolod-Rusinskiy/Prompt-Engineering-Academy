@@ -14,6 +14,7 @@ export function SiteLayout() {
 
         <nav className="topbar__nav">
           <NavLink to="/">Главная</NavLink>
+          <NavLink to="/ask">Спроси платформу</NavLink>
           <NavLink to="/journey">Journey</NavLink>
           <NavLink to="/articles/llm-and-tokens">Статьи</NavLink>
           <NavLink to="/quiz">Итоговый тест</NavLink>

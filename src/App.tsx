@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { SiteLayout } from './components/layout/SiteLayout';
 import { ArticlePage } from './pages/ArticlePage';
+import { AskPlatformPage } from './pages/AskPlatformPage';
 import { HomePage } from './pages/HomePage';
 import { JourneyReportPage } from './pages/JourneyReportPage';
 import { JourneyRunPage } from './pages/JourneyRunPage';
@@ -13,6 +14,7 @@ export default function App() {
     <Routes>
       <Route element={<SiteLayout />} path="/">
         <Route element={<HomePage />} index />
+        <Route element={<AskPlatformPage />} path="ask" />
         <Route element={<ArticlePage />} path="articles/:slug" />
         <Route element={<JourneySetupPage />} path="journey" />
         <Route element={<JourneyRunPage />} path="journey/run" />

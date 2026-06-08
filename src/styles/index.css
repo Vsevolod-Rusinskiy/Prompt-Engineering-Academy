@@ -248,6 +248,11 @@ h3 {
 .article-catalog,
 .article-content,
 .quiz-list,
+.ask-page,
+.ask-workspace,
+.ask-form,
+.ask-result,
+.ask-sources,
 .journey-page,
 .journey-main,
 .journey-sidebar,
@@ -311,6 +316,84 @@ h3 {
 .journey-error {
   color: var(--danger);
   margin: 0;
+}
+
+.ask-hero {
+  padding: 32px;
+  border-radius: 32px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(250, 244, 232, 0.88));
+  border: 1px solid rgba(16, 33, 38, 0.08);
+  box-shadow: var(--shadow);
+}
+
+.ask-hero h1 {
+  font-size: clamp(2.3rem, 4vw, 4.5rem);
+  line-height: 0.95;
+  margin-bottom: 14px;
+}
+
+.ask-hero__lead {
+  max-width: 64ch;
+  font-size: 1.05rem;
+}
+
+.ask-form,
+.ask-answer {
+  padding: 24px;
+  border-radius: 28px;
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.ask-form label {
+  color: #102126;
+  font-weight: 700;
+}
+
+.ask-form__textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.ask-form__actions {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.ask-error {
+  margin: 0;
+  color: var(--danger);
+}
+
+.ask-answer p:last-child {
+  margin-bottom: 0;
+  white-space: pre-wrap;
+}
+
+.ask-source-list {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.ask-source {
+  padding: 22px;
+  border-radius: 24px;
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 12px;
+}
+
+.ask-source p {
+  margin: 0;
+}
+
+.ask-source__section {
+  color: var(--accent-dark);
+  font-weight: 700;
 }
 
 .article-cards {
@@ -720,9 +803,13 @@ h3 {
 
   .hero,
   .article-hero,
+  .ask-hero,
   .quiz-page__intro,
   .article-card,
   .article-section,
+  .ask-form,
+  .ask-answer,
+  .ask-source,
   .exercise-card,
   .quiz-progress,
   .summary-card,

@@ -2,11 +2,24 @@ import { useState } from 'react';
 import { ExerciseRenderer } from '../components/exercises/ExerciseRenderer';
 import { QuizProgress } from '../components/quiz/QuizProgress';
 import { QuizSessionProvider, useQuizSession } from '../components/quiz/QuizContext';
+import { NextStudyRecommendation } from '../components/personalization/NextStudyRecommendation';
 import { quizExercises } from '../content/quiz';
+import { recordQuizAttempt } from '../lib/user-context';
 
 function QuizPageContent() {
   const [showSummary, setShowSummary] = useState(false);
   const { summary } = useQuizSession();
+
+  function handleFinishQuiz() {
+    setShowSummary(true);
+    recordQuizAttempt({
+      completedAt: new Date().toISOString(),
+      score: summary.score,
+      total: summary.maxScore,
+      percentage: summary.percent,
+      recommendation: summary.recommendation,
+    });
+  }
 
   return (
     <div className="quiz-page">
@@ -37,7 +50,7 @@ function QuizPageContent() {
       <section className="quiz-summary-panel">
         <button
           className="button button--primary"
-          onClick={() => setShowSummary(true)}
+          onClick={handleFinishQuiz}
           type="button"
         >
           Завершить тест
@@ -57,6 +70,8 @@ function QuizPageContent() {
             <p>{summary.recommendation}</p>
           </div>
         ) : null}
+
+        {showSummary ? <NextStudyRecommendation /> : null}
       </section>
     </div>
   );
